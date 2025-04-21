@@ -70,18 +70,28 @@
             <name>私服-</name>
             <url>http://127.0.0.1:9901/repository/maven-spero-group/</url>
             <releases>
+                <enabled>true</enabled>
             </releases>
             <snapshots>
+                <enabled>true</enabled>
             </snapshots>
         </repository>
     </repositories>
+    <!--打包上传配置-->
+    <distributionManagement>
+        <repository>
+            <id>spero</id>
+            <url>http://127.0.0.1:9901/repository/maven-spero-repository/</url>
+        </repository>
+    </distributionManagement>
 
     <build>
         <plugins>
+            <!--生成骨架代码的插件-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-archetype-plugin</artifactId>
-                <version>3.2.0</version>
+                <version>3.3.1</version>
             </plugin>
         </plugins>
     </build>
