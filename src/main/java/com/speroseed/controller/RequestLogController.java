@@ -18,6 +18,18 @@ public class RequestLogController {
 
     private final RequestLogService requestLogService;
 
+    @Operation(summary = "测试请求路由携带参数的日志打印")
+    @GetMapping("/testPathParam")
+    public AjaxResult<CustomerInfo> testPathParam(String name) {
+        return AjaxResult.success(name);
+    }
+
+    @Operation(summary = "测试动态路由参数的请求日志打印")
+    @PostMapping("/testPathVariable/{name}/test/{age}")
+    public AjaxResult<CustomerInfo> testPathVariable(@PathVariable("name") String name, @PathVariable("age") String age) {
+        return AjaxResult.success(name);
+    }
+
     @Operation(summary = "测试Json请求日志打印")
     @PostMapping("/testJson")
     public AjaxResult<CustomerInfo> queryCustomerInfo(@RequestBody User user) {

@@ -26,12 +26,22 @@ public class RequestLogServiceImpl implements RequestLogService {
 
     @Override
     public void testASyncRequestTrackLog() {
+        // 方式一：手动设置
         // 获取当前线程的 MDC 内容
-        Map<String, String> contextMap = MDC.getCopyOfContextMap();
+//        Map<String, String> contextMap = MDC.getCopyOfContextMap();
+//        executor.submit(() -> {
+//            try {
+//                // 将 MDC 内容设置到新线程
+//                MDC.setContextMap(contextMap);
+//                log.info("Async task started");
+//            } finally {
+//                MDC.clear();
+//            }
+//        });
+
+        // 方式二：为线程池配置装饰器
         executor.submit(() -> {
             try {
-                // 将 MDC 内容设置到新线程
-                MDC.setContextMap(contextMap);
                 log.info("Async task started");
             } finally {
                 MDC.clear();
